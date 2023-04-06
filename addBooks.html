@@ -1,6 +1,9 @@
+<!DOCTYPE html>
+<html>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
 <head>
   <title>add books</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -14,11 +17,14 @@
   Title: <input type="text" id="book_title" name="book_title"> <br/>
   Author: <input type="text" id="book_author" name="book_author"> <br/>
     <button type="button" onclick="addBook()">add book</button>
+    <button type="button" onclick="showBooks()">show books</button>
   </form>
 
   <script TYPE="text/javascript">
+    var bookObject; // this is the book object
+    var booksArray =[]; // this is the array of books
+
     function addBook() {
-      console.log("name: ");
       var name;
       var title;
       var author;
@@ -29,9 +35,15 @@
       var bookObject = {name:name, title:title, author:author};
       console.log(bookObject);
       console.log(bookObject.author);
-      var booksArray = [bookObject];
+      booksArray.push(bookObject);
       console.log(booksArray);
     }
+
+    function showBooks() {
+      
+    }
+
+
   </script>
 </body>
 
