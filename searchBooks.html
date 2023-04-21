@@ -4,21 +4,39 @@
 <head>
   <title>browse books</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <a href="index.html">home</a>
+  <div class="header">
+    <br>
+    <center>
+      <table>
+        <tr>
+          <td><img src="books.png" alt="stack of books" width="120" height="90" /></td>
+          <td>
+            <h1>Book Buddy</h1><a class="header" href="index.html"> home</a>
+            <span> | </span>
+            <a class="header" href="addBooks.html">add books</a>
+            <span> | </span>
+            <a class="header" href="helpPage.html">help</a>
+          </td>
+        </tr>
+      </table>
+    </center>
+    <hr>
+  </div>
 </head>
 
 <body>
   <form>
-    add parameters for your search here <br />
+    <b> add parameters for your search here: <br></b>
     owner: <input type="text" id="searched_owner" name="searched_owner"> <br />
     title: <input type="text" id="searched_title" name="searched_title"> <br />
     author: <input type="text" id="searched_author" name="searched_author"> <br />
     <button type="button" onclick="searchBooks()">search</button>
 
-    <span id="tableData"></span> 
+    <span id="tableData"> <br> <br>The book(s) that match your search are: </span>
   </form>
 
   <script type="text/javascript">
+    var ifBooksMatch = 0
     var booksArray = [];
     var booksObject0 = {owner: "John", title: "The Darkest Minds", author: "Alexandra Bracken"};
     var booksObject1 = {owner: "Jane", title: "The Joy Luck Club", author: "Amy Tan"};
@@ -45,10 +63,23 @@
         if (searchedAuthor == booksArray[i].author) {
           console.log("for book", [i], "the author matches");
         }
+        if (searchedOwner == booksArray[i].owner || searchedTitle == booksArray[i].title || searchedAuthor == booksArray[i].author) {
+          document.getElementById('tableData').innerHTML += "<br>" + booksArray[i].title;
+        }
       }
-      //to do: create a variable that determines if a book matches the search (within each if statement?) and then list all the books that match the search (see code on addBooks page)
+
+      for (let i = 0; i < booksArray.length; i++) {
+        if (searchedOwner != booksArray[i].owner && searchedTitle != booksArray[i].title && searchedAuthor != booksArray[i].author) {
+          ifBooksMatch++
+          console.log(ifBooksMatch);
+        }
+        if (ifBooksMatch == booksArray.length) {
+          document.getElementById('tableData').innerHTML = "<br><br><span>No books match your search.</span>";
+        }
+      }
+
     }
-    
+
   </script>
-  
+
 </body>
