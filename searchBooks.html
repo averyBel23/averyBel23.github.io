@@ -64,7 +64,10 @@
           console.log("for book", [i], "the author matches");
         }
         if (searchedOwner == booksArray[i].owner || searchedTitle == booksArray[i].title || searchedAuthor == booksArray[i].author) {
-          document.getElementById('tableData').innerHTML += "<br>" + booksArray[i].title;
+          document.getElementById('tableData').innerHTML +=
+          "<br/> <br> <span>Title: </span>" + booksArray[i].title +
+          "<br/> <span>Author: </span>" + booksArray[i].author +
+          "<br/> <span>Owner: </span>" + booksArray[i].name;;
         }
       }
 
