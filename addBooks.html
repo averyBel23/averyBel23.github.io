@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>Add Books</title>
+  <div class="header">
+    <br>
+    <center>
+      <table>
+        <tr>
+          <td><img src="books.png" alt="stack of books" width="120" height="90" /></td>
+          <td>
+            <h1>Add Books</h1><a class="header" href="index.html">home</a>
+            <span> | </span>
+            <a class="header" href="searchBooks.html">search</a>
+            <span> | </span>
+            <a class="header" href="browse.html">browse</a>
+            <span class="header"> | </span>
+            <a class="header" href="helpPage.html">help</a>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </div>
+</head>
+
+<body>
+  <span><b>upload books here:</b></span>
+  <form>
+    Your name: <input type="text" id="name" name="name"> <br />
+    Title: <input type="text" id="title" name="title"> <br />
+    Author: <input type="text" id="author" name="author"> <br />
+    <button type="button" onclick="enterBook()">enter book info</button>
+    <button type="button" onclick="showBooks()">show books</button>
+    <br />
+    <span id="tableData"></span>
+    <!-- This is where the items from the Array will be listed -->
+  </form>
+
+  <script type="text/javascript">
+    let booksArray = []; // This initiates the array and places one object with 3 properties (name, title, author)
+    console.log("booksArray:", booksArray);
+
+    // This function is for entering one book object to the array. It "pushes" the object, which has 3 properties, into the array 
+    function enterBook() {
+      var name = document.getElementById("name").value;
+      var title = document.getElementById("title").value;
+      var author = document.getElementById("author").value;
+      console.log("name:", name,
+        "title:", title, "author:", author);
+      var booksObject = {name: name, title: title, author: author}; // this is the object
+      booksArray.push(booksObject); // this is where it pushes the object into the array
+      console.log("booksObject:", booksObject);
+      console.log("booksArray:", booksArray);
+    }
+
+    // This function lists all the books in the array, including the first object that has the values name, title, and author
+    function showBooks() {
+      for (let i = 0; i < booksArray.length; i++) {// this loops through the array and writes each value onto the "tableData" ID in the HTML
+        // console.log(booksArray[i]);
+        // console.log(booksArray[i].title);
+
+        //this displays everything 
+        document.getElementById('tableData').innerHTML +=
+          "<br/> <br> <span>Title: </span>" + booksArray[i].title +
+          "<br/> <span>Author: </span>" + booksArray[i].author +
+          "<br/> <span>Owner: </span>" + booksArray[i].name;
+      }
+    }
+  </script>
+  <!-- "<br/><br/>" + booksArray[i].name +
+          "<br/>" + booksArray[i].title +
+          "<br/>" + booksArray[i].author; -->
+</body>
+
+</html>

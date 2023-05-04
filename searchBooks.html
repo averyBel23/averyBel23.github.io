@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>browse books</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <div class="header">
+    <br>
+    <center>
+      <table>
+        <tr>
+          <td><img src="books.png" alt="stack of books" width="120" height="90" /></td>
+          <td>
+            <h1>Book Buddy</h1><a class="header" href="index.html"> home</a>
+            <span> | </span>
+            <a class="header" href="addBooks.html">add books</a>
+            <span> | </span>
+            <a class="header" href="browse.html">browse</a>
+            <span> | </span>
+            <a class="header" href="helpPage.html">help</a>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </div>
+</head>
+
+<body>
+  <form>
+    <b> Enter the owner, title, and/or author of the book: <br></b>
+   <input type="text" id="searched_owner" name="searched_owner" placeholder="owner"> <br/>
+    <input type="text" id="searched_title" name="searched_title" placeholder="title"> <br/>
+   <input type="text" id="searched_author" name="searched_author" placeholder="author"> <br />
+    <button type="button" onclick="searchBooks()">search</button>
+
+    <span id="tableData"> <br> <br>The book(s) that match your search are: </span>
+  </form>
+
+  <script type="text/javascript">
+    var ifBooksMatch = 0
+    var booksArray = [];
+    var booksObject0 = {owner: "John", title: "The Darkest Minds", author: "Alexandra Bracken"};
+    var booksObject1 = {owner: "Jane", title: "The Joy Luck Club", author: "Amy Tan"};
+    var booksObject2 = {owner: "Susan", title: "The Martian", author: "Andy Weir"};
+    var booksObject3 = {owner: "Simon", title: "The Lion, the Witch, and the Wardrobe", author: "C. S. Lewis"};
+    booksArray.push(booksObject0);
+    booksArray.push(booksObject1);
+    booksArray.push(booksObject2);
+    booksArray.push(booksObject3);
+    console.log(booksArray);
+
+    function searchBooks() {
+      var searchedOwner = document.getElementById("searched_owner").value;
+      var searchedTitle = document.getElementById("searched_title").value;
+      var searchedAuthor = document.getElementById("searched_author").value;
+
+      for (let i = 0; i < booksArray.length; i++) {
+        if (searchedOwner == booksArray[i].owner) {
+          console.log("for book", [i], "the owner matches");
+        }
+        if (searchedTitle == booksArray[i].title) {
+          console.log("for book", [i], "the title matches");
+        }
+        if (searchedAuthor == booksArray[i].author) {
+          console.log("for book", [i], "the author matches");
+        }
+        if (searchedOwner == booksArray[i].owner || searchedTitle == booksArray[i].title || searchedAuthor == booksArray[i].author) {
+          document.getElementById('tableData').innerHTML +=
+          "<br/> <br> <span>Title: </span>" + booksArray[i].title +
+          "<br/> <span>Author: </span>" + booksArray[i].author +
+          "<br/> <span>Owner: </span>" + booksArray[i].owner;
+        }
+      }
+
+      for (let i = 0; i < booksArray.length; i++) {
+        if (searchedOwner != booksArray[i].owner && searchedTitle != booksArray[i].title && searchedAuthor != booksArray[i].author) {
+          ifBooksMatch++
+          console.log(ifBooksMatch);
+        }
+        if (ifBooksMatch == booksArray.length) {
+          document.getElementById('tableData').innerHTML = "<br><br><span>No books match your search.</span>";
+        }
+      }
+
+    }
+
+  </script>
+
+</body>
